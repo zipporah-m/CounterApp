@@ -24,10 +24,11 @@ import androidx.compose.ui.unit.sp
 import edu.temple.counterapp.ui.theme.CounterAppTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : ComponentActivity() {
     // implementation of the lazy instantiation
-    val counterViewModel by viewModels<CounterViewModel>()
+    //val counterViewModel by viewModels<CounterViewModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
             CounterAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Counter(
-                        counterViewModel = counterViewModel,
+                        // counterViewModel = counterViewModel,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -47,7 +48,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Counter(counterViewModel: CounterViewModel, modifier: Modifier = Modifier) {
+fun Counter(//counterViewModel: CounterViewModel,
+            modifier: Modifier = Modifier) {
+
+    val counterViewModel : CounterViewModel = viewModel()
     Column(modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center) {
